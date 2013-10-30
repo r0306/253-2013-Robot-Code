@@ -14,7 +14,7 @@ import java.util.TimerTask;
  */
 public class RobotTimer
 {
-
+    static Timer autotimer = new Timer();
     public static void timeLoader()
     {
         
@@ -127,8 +127,52 @@ public class RobotTimer
                     
                     }
         }, delay);
+       
+    }
+     public static void autonomousDelayLoad(long delay) 
+     {
+      
+        Timer timer = new Timer();
         
+        autotimer.schedule(new TimerTask()
+        {          
+   
+                    public void run()
+                    {
+                       
+                        RobotMain.getLoader().runLoaderAutonomous();
+                        RobotMain.getLoader().enableLoader();
+                    
+                    }
+        
+        }, delay);
+         
+     }
+   
+     public static void autonomousPistonDelay(long delay) 
+     {
+      
+        Timer timer = new Timer();
+        
+        timer.schedule(new TimerTask()
+        {          
+   
+                    public void run()
+                    {
+
+                         RobotMain.getLoader().stopLoader();
+                         RobotMain.getLoader().runPistonAutonomous();
+                         RobotMain.getLoader().enablePiston();
+                         
+                    }
+        
+        }, delay);
+         
+     }
+
+    public RobotTimer() {
     }
     
-}
+
+} 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                

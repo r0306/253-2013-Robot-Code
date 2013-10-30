@@ -41,6 +41,8 @@ public class RobotMain extends IterativeRobot implements RobotPorts
     
     public static final long LOADER_DELAY = 500;
     
+    boolean firstTime=true;
+    
     public void robotInit()
     {
 
@@ -64,10 +66,21 @@ public class RobotMain extends IterativeRobot implements RobotPorts
     /**
      * This function is called once each time the robot enters autonomous mode.
      */
-    public void autonomousPeriodic()
-    {
+   //public void autonomousPeriodic()
+   // { 
         
-    }
+     //   getShooter().shooterOn();
+        
+       // getLoader().sensorCheck();
+        //            System.out.println(getLoader().loaderReady() + " " + getLoader().pistonReady() + " " + getLoader().timerReady());
+       // if (getLoader().ready()&&firstTime)
+       // {
+         //   firstTime=false;
+         //  RobotTimer.autonomousDelayLoad(LOADER_DELAY);
+        
+      //  }
+            
+  //  }
 
     /**
      * This function is called once each time the robot enters operator control.
@@ -175,14 +188,14 @@ public class RobotMain extends IterativeRobot implements RobotPorts
         if (leftStick.getRawButton(3))
         {
             
-            getLifter().liftDown();
+            getLifter().liftUp();
             
         }
         
         else if (leftStick.getRawButton(2))
         {
             
-            getLifter().liftUp();
+            getLifter().liftDown();
             
         }
         

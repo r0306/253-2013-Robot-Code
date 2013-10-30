@@ -29,7 +29,8 @@ public class LoaderController implements RobotPorts
     public static final long PISTON_DELAY = 100L;
     public static final long PISTON_START_DELAY = 500L;
     public static final long TIMER_DELAY = 500L;
-    public static final long LOADER_DURATION = 650L;
+    public static final long LOADER_DURATION = 1000L;
+    public static final long AUTONOMOUS_DELAY = 70L;
     
     public LoaderController()
     {
@@ -92,6 +93,20 @@ public class LoaderController implements RobotPorts
         
     }
     
+    public boolean pistonReady()
+    {
+     
+        return pistonReady;
+        
+    }
+    
+    public boolean timerReady()
+    {
+        
+        return timerReady;
+    
+    }
+    
     public void sensorCheck()
     {
 
@@ -134,7 +149,7 @@ public class LoaderController implements RobotPorts
         piston.set(Relay.Value.kOff);
         
     }
-    
+   
     public void runLoader()
     {
         
@@ -148,6 +163,32 @@ public class LoaderController implements RobotPorts
 
        }
         
+    }
+    
+    public void runAutonomousProcesses()
+    {
+        
+        
+        
+    }
+    
+    public void runLoaderAutonomous()
+    {
+      
+        disableLoader();
+        disableTimer();
+        loader.set(Relay.Value.kForward);
+        RobotTimer.loaderDelayStop(LOADER_DURATION, PISTON_START_DELAY);
+    
+    }
+    
+    public void runPistonAutonomous()
+    { 
+        
+        disablePiston();
+        piston.set(Relay.Value.kForward);
+        RobotTimer.pistonTimer(AUTONOMOUS_DELAY);
+          
     }
     
     public boolean ready()
